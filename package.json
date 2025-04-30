@@ -1,0 +1,40 @@
+{
+  "name": "testmt",
+  "version": "1.0.0",
+  "description": "This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.",
+  "main": "entries.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RamRaiSe/testMT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RamRaiSe/testMT/issues"
+  },
+  "homepage": "https://github.com/RamRaiSe/testMT#readme",
+  "dependencies": {
+    "@symfony/webpack-encore": "^5.1.0",
+    "axios": "^1.9.0",
+    "core-js": "^3.41.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.26.9",
+    "babel-loader": "^10.0.0",
+    "css-loader": "^7.1.2",
+    "file-loader": "^6.2.0",
+    "style-loader": "^4.0.0",
+    "vue-loader": "^17.4.2",
+    "vue-template-compiler": "^2.7.16",
+    "webpack": "^5.99.7",
+    "webpack-merge": "^6.0.1"
+  }
+}

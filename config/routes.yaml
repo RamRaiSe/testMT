@@ -1,0 +1,20 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+    exclude: ../src/Controller/Rest
+
+controllers_rest:
+    type: attribute
+    resource:
+        path: ../src/Controller/Rest/
+        namespace: App\Controller\Rest
+    prefix: /api
+    name_prefix: api_
+
+spa:
+    path: /{vueRouting}
+    controller: App\Controller\MainController::index
+    exclude:
+        - ../src/Controller/Rest
+    requirements:
+        vueRouting: .+
