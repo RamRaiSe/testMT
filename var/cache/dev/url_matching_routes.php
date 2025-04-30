@@ -50,9 +50,19 @@ return [
                         .')'
                     .')'
                 .')'
-                .'|/ticket/([^/]++)(*:218)'
-                .'|/api/ticket/([^/]++)(*:246)'
-                .'|/(.+)(*:259)'
+                .'|/ticket/([^/]++)(?'
+                    .'|(*:221)'
+                    .'|/messages(?'
+                        .'|(*:241)'
+                    .')'
+                .')'
+                .'|/api/ticket/([^/]++)(?'
+                    .'|(*:274)'
+                    .'|/messages(?'
+                        .'|(*:294)'
+                    .')'
+                .')'
+                .'|/(.+)(*:309)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -64,9 +74,17 @@ return [
         168 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        218 => [[['_route' => 'get_ticket', '_controller' => 'App\\Controller\\Rest\\TicketRestController::getTicket'], ['id'], ['GET' => 0], null, false, true, null]],
-        246 => [[['_route' => 'api_get_ticket', '_controller' => 'App\\Controller\\Rest\\TicketRestController::getTicket'], ['id'], ['GET' => 0], null, false, true, null]],
-        259 => [
+        221 => [[['_route' => 'get_ticket', '_controller' => 'App\\Controller\\Rest\\TicketRestController::getTicket'], ['id'], ['GET' => 0], null, false, true, null]],
+        241 => [
+            [['_route' => 'post_ticket_messages', '_controller' => 'App\\Controller\\Rest\\TicketRestController::postTicketMessages'], ['id'], ['POST' => 0], null, false, false, null],
+            [['_route' => 'get_ticket_messages', '_controller' => 'App\\Controller\\Rest\\TicketRestController::getTicketMessages'], ['id'], ['GET' => 0], null, false, false, null],
+        ],
+        274 => [[['_route' => 'api_get_ticket', '_controller' => 'App\\Controller\\Rest\\TicketRestController::getTicket'], ['id'], ['GET' => 0], null, false, true, null]],
+        294 => [
+            [['_route' => 'api_post_ticket_messages', '_controller' => 'App\\Controller\\Rest\\TicketRestController::postTicketMessages'], ['id'], ['POST' => 0], null, false, false, null],
+            [['_route' => 'api_get_ticket_messages', '_controller' => 'App\\Controller\\Rest\\TicketRestController::getTicketMessages'], ['id'], ['GET' => 0], null, false, false, null],
+        ],
+        309 => [
             [['_route' => 'spa', '_controller' => 'App\\Controller\\MainController::index'], ['vueRouting'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

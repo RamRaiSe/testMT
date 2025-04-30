@@ -1,21 +1,28 @@
 <template>
-  <div class="ticket-show-container">
+  <div class="ticket-page">
     <div class="ticket-details">
-      <h2>{{ ticket.title }}</h2>
+      <div class="meta">
+        <span><strong>Created:</strong> {{ formatDate(ticket.createdAt) }}</span>
+        <span><strong>Creator:</strong> {{ ticket.creator.email }}</span>
+        <span><strong>Status:</strong> <span :class="'ticket-status ' + getStatusString(ticket.status)">{{ getStatusString(ticket.status) }}</span></span>
+      </div>
+      <h2>Ticket #{{ ticket.id }} — {{ ticket.title }}</h2>
       <p class="description">{{ ticket.description }}</p>
     </div>
 
-    <div class="comments-section">
+    <div class="discussion">
       <h3>Discussion</h3>
-      <div class="comments-list">
-        <div v-for="comment in comments" :key="comment.id" class="comment">
-          <strong>{{ comment.author }}</strong>: {{ comment.content }}
+      <div class="messages">
+        <div v-for="message in messages" :key="message.id" class="message">
+          <div class="author">{{ message.creator.email }}</div>
+          <div class="text">{{ message.content }}</div>
+          <div class="timestamp">{{ formatDate(message.createdAt) }}</div>
         </div>
       </div>
 
-      <div class="comment-form">
-        <textarea v-model="newComment" placeholder="Write a comment..." />
-        <button @click="submitComment" :disabled="newComment === ''">Send</button>
+      <div class="new-message">
+        <textarea v-model="newMessage" placeholder="Write a message..."></textarea>
+        <button @click="sendMessage" :disabled="!newMessage">Send</button>
       </div>
     </div>
   </div>
@@ -32,10 +39,14 @@ export default {
         id: this.$route.params.id,
         title: '',
         description: '',
+        createdAt: null,
+        status: 0,
+        creator: {
+          email: '',
+        },
       },
-      comments: [],
-      newComment: '',
-      intervalId: null,
+      messages: [],
+      newMessage: '',
     }
   },
   methods: {
@@ -43,28 +54,50 @@ export default {
       const res = await axios.get(`/api/ticket/${this.ticket.id}`);
       this.ticket = res.data;
     },
-    async fetchComments() {
-      const res = await axios.get(`/api/ticket/${this.ticket.id}/comments`);
-      this.comments = res.data;
+    async fetchMessages() {
+      const res = await axios.get(`/api/ticket/${this.ticket.id}/messages`);
+      this.messages = res.data;
     },
-    async submitComment() {
-      if (!this.newComment.trim()) return;
+    async sendMessage() {
+      if (!this.newMessage.trim()) return;
 
-      await axios.post(`/api/ticket/${this.ticket.id}/comments`, {
-        content: this.newComment,
+      await axios.post(`/api/ticket/${this.ticket.id}/messages`, {
+        content: this.newMessage,
       });
 
-      this.newComment = '';
-      this.fetchComments();
+      this.newMessage = '';
+    },
+    formatDate(date) {
+      return new Date(date).toLocaleString();
+    },
+    getStatusString(status) {
+      if (status === 0) {
+        return 'open';
+      }
+      if (status === 1) {
+        return 'closed';
+      }
+    },
+    subscribe() {
+      const eventSource = new EventSource(
+          `http://localhost:3000/.well-known/mercure?topic=ticket-${this.ticket.id}`, {withCredentials: true}
+      );
+
+      eventSource.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        console.log(data);
+        this.messages.push(data);
+      };
+
+      eventSource.onerror = (error) => {
+        console.error("Error with EventSource:", error);
+      };
     }
   },
   mounted() {
     this.fetchTicket()
-    this.fetchComments()
-    this.intervalId = setInterval(this.fetchComments, 3000) // simulate real-time
+    this.fetchMessages()
+    this.subscribe();
   },
-  beforeUnmount() {
-    clearInterval(this.intervalId)
-  }
 }
 </script>

@@ -35,9 +35,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Ticket::class, mappedBy: 'creator')]
     private Collection $tickets;
 
+    /**
+     * @var Collection<int, Message>
+     */
+    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'creator')]
+    private Collection $messages;
+
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -148,6 +155,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($ticket->getCreator() === $this) {
                 $ticket->setCreator(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): static
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages->add($message);
+            $message->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): static
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getCreator() === $this) {
+                $message->setCreator(null);
             }
         }
 

@@ -334,56 +334,91 @@ textarea:focus {
 .form-group input, .form-group textarea {
     width: auto;
 }
-
-.ticket-show-container {
-    max-width: 700px;
-    margin: 0 auto;
-    font-family: 'Roboto', sans-serif;
+.ticket-page {
+    max-width: 800px;
+    margin: auto;
     padding: 2rem;
-    background: #f9f9f9;
-    border-radius: 12px;
+    font-family: 'Roboto', sans-serif;
 }
 
 .ticket-details {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     margin-bottom: 2rem;
 }
 
-.description {
-    color: #555;
-}
-
-.comments-section {
-    background: white;
-    border: 1px solid #ddd;
-    padding: 1rem;
-    border-radius: 8px;
-}
-
-.comments-list {
-    max-height: 300px;
-    overflow-y: auto;
-    margin-bottom: 1rem;
-}
-
-.comment {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
-}
-
-.comment-form textarea {
-    width: 100%;
-    height: 80px;
-    resize: none;
-    padding: 0.5rem;
+.ticket-details h2 {
     margin-bottom: 0.5rem;
 }
 
-.comment-form button {
-    float: right;
-    background: #007bff;
-    border: none;
-    color: white;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 5px;
+.meta {
+    margin-top: 1rem;
+    display: flex;
+    gap: 2rem;
+    font-size: 0.95rem;
+    color: #555;
 }
+
+.status {
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.status.open { background: #d1e7dd; color: #0f5132; }
+.status.closed { background: #f8d7da; color: #842029; }
+
+.discussion {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.messages {
+    margin-bottom: 1rem;
+}
+
+.message {
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+}
+
+.author {
+    font-weight: bold;
+    color: #333;
+}
+
+.timestamp {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.new-message {
+    width: 100%;
+}
+
+.new-message textarea {
+    width: 100%;
+    min-height: 80px;
+    margin-top: 1rem;
+    padding: 10px 0 10px 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.new-message button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #4caf50;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+

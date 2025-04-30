@@ -22,6 +22,7 @@ return [[
             'js' => [
                 '/build/runtime.js',
                 '/build/vendors-node_modules_vue-loader_dist_exportHelper_js-node_modules_vue_dist_vue_esm-bundler_js-a49e5b.js',
+                '/build/vendors-node_modules_core-js_modules_es_array_from_js-node_modules_core-js_modules_es_array_i-0a0c14.js',
                 '/build/assets_components_TicketIndexApp_vue.js',
                 '/build/tickets.js',
             ],
@@ -38,10 +39,11 @@ return [[
             'js' => [
                 '/build/runtime.js',
                 '/build/vendors-node_modules_vue-loader_dist_exportHelper_js-node_modules_vue_dist_vue_esm-bundler_js-a49e5b.js',
-                '/build/vendors-node_modules_core-js_modules_es_object_keys_js-node_modules_vue-router_dist_vue-router_mjs.js',
+                '/build/vendors-node_modules_core-js_modules_es_array_from_js-node_modules_core-js_modules_es_array_i-0a0c14.js',
+                '/build/vendors-node_modules_core-js_modules_es_object_keys_js-node_modules_core-js_modules_es_string-9e2ece.js',
+                '/build/assets_components_TicketIndexApp_vue.js',
                 '/build/assets_components_CreateTicketApp_vue.js',
                 '/build/assets_components_RegistrationFormApp_vue.js',
-                '/build/assets_components_TicketIndexApp_vue.js',
                 '/build/app.js',
             ],
         ],

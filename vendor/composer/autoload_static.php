@@ -42,9 +42,11 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
             'Symfony\\Flex\\' => 13,
             'Symfony\\Contracts\\Translation\\' => 30,
             'Symfony\\Contracts\\Service\\' => 26,
+            'Symfony\\Contracts\\HttpClient\\' => 29,
             'Symfony\\Contracts\\EventDispatcher\\' => 34,
             'Symfony\\Contracts\\Cache\\' => 24,
             'Symfony\\Component\\Yaml\\' => 23,
+            'Symfony\\Component\\WebLink\\' => 26,
             'Symfony\\Component\\VarExporter\\' => 30,
             'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\Validator\\' => 28,
@@ -61,11 +63,14 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
             'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\PasswordHasher\\' => 33,
             'Symfony\\Component\\OptionsResolver\\' => 34,
+            'Symfony\\Component\\Mercure\\' => 26,
             'Symfony\\Component\\HttpKernel\\' => 29,
             'Symfony\\Component\\HttpFoundation\\' => 33,
+            'Symfony\\Component\\HttpClient\\' => 29,
             'Symfony\\Component\\Form\\' => 23,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Filesystem\\' => 29,
+            'Symfony\\Component\\ExpressionLanguage\\' => 37,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\Dotenv\\' => 25,
@@ -78,6 +83,7 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
             'Symfony\\Bundle\\WebProfilerBundle\\' => 33,
             'Symfony\\Bundle\\TwigBundle\\' => 26,
             'Symfony\\Bundle\\SecurityBundle\\' => 30,
+            'Symfony\\Bundle\\MercureBundle\\' => 29,
             'Symfony\\Bundle\\MakerBundle\\' => 27,
             'Symfony\\Bundle\\FrameworkBundle\\' => 31,
             'Symfony\\Bridge\\Twig\\' => 20,
@@ -86,11 +92,16 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Link\\' => 9,
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'Psr\\Clock\\' => 10,
             'Psr\\Cache\\' => 10,
             'PhpParser\\' => 10,
+        ),
+        'L' => 
+        array (
+            'Lcobucci\\JWT\\' => 13,
         ),
         'D' => 
         array (
@@ -169,6 +180,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         array (
             0 => __DIR__ . '/..' . '/symfony/service-contracts',
         ),
+        'Symfony\\Contracts\\HttpClient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/http-client-contracts',
+        ),
         'Symfony\\Contracts\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher-contracts',
@@ -180,6 +195,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         'Symfony\\Component\\Yaml\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
+        ),
+        'Symfony\\Component\\WebLink\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/web-link',
         ),
         'Symfony\\Component\\VarExporter\\' => 
         array (
@@ -245,6 +264,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         array (
             0 => __DIR__ . '/..' . '/symfony/options-resolver',
         ),
+        'Symfony\\Component\\Mercure\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/mercure/src',
+        ),
         'Symfony\\Component\\HttpKernel\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-kernel',
@@ -252,6 +275,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         'Symfony\\Component\\HttpFoundation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-foundation',
+        ),
+        'Symfony\\Component\\HttpClient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/http-client',
         ),
         'Symfony\\Component\\Form\\' => 
         array (
@@ -264,6 +291,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         'Symfony\\Component\\Filesystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/filesystem',
+        ),
+        'Symfony\\Component\\ExpressionLanguage\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/expression-language',
         ),
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
@@ -313,6 +344,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         array (
             0 => __DIR__ . '/..' . '/symfony/security-bundle',
         ),
+        'Symfony\\Bundle\\MercureBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/mercure-bundle/src',
+        ),
         'Symfony\\Bundle\\MakerBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/maker-bundle/src',
@@ -333,6 +368,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         array (
             0 => __DIR__ . '/..' . '/psr/log/src',
         ),
+        'Psr\\Link\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/link/src',
+        ),
         'Psr\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/event-dispatcher/src',
@@ -352,6 +391,10 @@ class ComposerStaticInit74ab73114a599f4a2997b6a284f9e273
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'Lcobucci\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lcobucci/jwt/src',
         ),
         'Doctrine\\SqlFormatter\\' => 
         array (

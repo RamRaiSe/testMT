@@ -23,9 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-!/var/cache
-/var/cache/*
-
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/

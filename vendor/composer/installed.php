@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '46cb969079e9269dc061edb9e8931f699318a680',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '46cb969079e9269dc061edb9e8931f699318a680',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -145,6 +145,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'lcobucci/jwt' => array(
+            'pretty_version' => '5.5.0',
+            'version' => '5.5.0.0',
+            'reference' => 'a835af59b030d3f2967725697cf88300f579088e',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../lcobucci/jwt',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'nikic/php-parser' => array(
             'pretty_version' => 'v5.4.0',
             'version' => '5.4.0.0',
@@ -153,6 +162,18 @@
             'install_path' => __DIR__ . '/../nikic/php-parser',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'php-http/async-client-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '*',
+            ),
+        ),
+        'php-http/client-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '*',
+            ),
         ),
         'psr/cache' => array(
             'pretty_version' => '3.0.0',
@@ -212,6 +233,27 @@
             'dev_requirement' => false,
             'provided' => array(
                 0 => '1.0',
+            ),
+        ),
+        'psr/http-client-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0',
+            ),
+        ),
+        'psr/link' => array(
+            'pretty_version' => '2.0.1',
+            'version' => '2.0.1.0',
+            'reference' => '84b159194ecfd7eaa472280213976e96415433f7',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/link',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'psr/link-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0|2.0',
             ),
         ),
         'psr/log' => array(
@@ -364,6 +406,15 @@
                 0 => '2.0|3.0',
             ),
         ),
+        'symfony/expression-language' => array(
+            'pretty_version' => 'v7.2.0',
+            'version' => '7.2.0.0',
+            'reference' => '26f4884a455e755e630a5fc372df124a3578da2e',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/expression-language',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'symfony/filesystem' => array(
             'pretty_version' => 'v7.2.0',
             'version' => '7.2.0.0',
@@ -409,6 +460,30 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'symfony/http-client' => array(
+            'pretty_version' => 'v7.2.4',
+            'version' => '7.2.4.0',
+            'reference' => '78981a2ffef6437ed92d4d7e2a86a82f256c6dc6',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/http-client',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/http-client-contracts' => array(
+            'pretty_version' => 'v3.5.2',
+            'version' => '3.5.2.0',
+            'reference' => 'ee8d807ab20fcb51267fdace50fbe3494c31e645',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/http-client-contracts',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/http-client-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '3.0',
+            ),
+        ),
         'symfony/http-foundation' => array(
             'pretty_version' => 'v7.2.5',
             'version' => '7.2.5.0',
@@ -435,6 +510,24 @@
             'install_path' => __DIR__ . '/../symfony/maker-bundle',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'symfony/mercure' => array(
+            'pretty_version' => 'v0.6.5',
+            'version' => '0.6.5.0',
+            'reference' => '304cf84609ef645d63adc65fc6250292909a461b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/mercure',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/mercure-bundle' => array(
+            'pretty_version' => 'v0.3.9',
+            'version' => '0.3.9.0',
+            'reference' => '77435d740b228e9f5f3f065b6db564f85f2cdb64',
+            'type' => 'symfony-bundle',
+            'install_path' => __DIR__ . '/../symfony/mercure-bundle',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'symfony/options-resolver' => array(
             'pretty_version' => 'v7.2.0',
@@ -730,6 +823,15 @@
             'reference' => 'c37b301818bd7288715d40de634f05781b686ace',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/var-exporter',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/web-link' => array(
+            'pretty_version' => 'v7.2.0',
+            'version' => '7.2.0.0',
+            'reference' => 'f537556a885e14a1d28f6c759d41e57e93d0a532',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/web-link',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

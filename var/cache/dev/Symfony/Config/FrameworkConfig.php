@@ -802,23 +802,12 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
     }
 
     /**
-     * @template TValue
-     * @param TValue $value
      * Web links configuration
-     * @default {"enabled":false}
-     * @return \Symfony\Config\Framework\WebLinkConfig|$this
-     * @psalm-return (TValue is array ? \Symfony\Config\Framework\WebLinkConfig : static)
-     */
-    public function webLink(array $value = []): \Symfony\Config\Framework\WebLinkConfig|static
+     * @default {"enabled":true}
+    */
+    public function webLink(array $value = []): \Symfony\Config\Framework\WebLinkConfig
     {
-        if (!\is_array($value)) {
-            $this->_usedProperties['webLink'] = true;
-            $this->webLink = $value;
-
-            return $this;
-        }
-
-        if (!$this->webLink instanceof \Symfony\Config\Framework\WebLinkConfig) {
+        if (null === $this->webLink) {
             $this->_usedProperties['webLink'] = true;
             $this->webLink = new \Symfony\Config\Framework\WebLinkConfig($value);
         } elseif (0 < \func_num_args()) {
@@ -954,7 +943,7 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
      * @template TValue
      * @param TValue $value
      * HTTP Client configuration
-     * @default {"enabled":false,"scoped_clients":[]}
+     * @default {"enabled":true,"scoped_clients":[]}
      * @return \Symfony\Config\Framework\HttpClientConfig|$this
      * @psalm-return (TValue is array ? \Symfony\Config\Framework\HttpClientConfig : static)
      */
@@ -1412,7 +1401,7 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
 
         if (array_key_exists('web_link', $value)) {
             $this->_usedProperties['webLink'] = true;
-            $this->webLink = \is_array($value['web_link']) ? new \Symfony\Config\Framework\WebLinkConfig($value['web_link']) : $value['web_link'];
+            $this->webLink = new \Symfony\Config\Framework\WebLinkConfig($value['web_link']);
             unset($value['web_link']);
         }
 
@@ -1620,7 +1609,7 @@ class FrameworkConfig implements \Symfony\Component\Config\Builder\ConfigBuilder
             $output['exceptions'] = array_map(fn ($v) => $v->toArray(), $this->exceptions);
         }
         if (isset($this->_usedProperties['webLink'])) {
-            $output['web_link'] = $this->webLink instanceof \Symfony\Config\Framework\WebLinkConfig ? $this->webLink->toArray() : $this->webLink;
+            $output['web_link'] = $this->webLink->toArray();
         }
         if (isset($this->_usedProperties['lock'])) {
             $output['lock'] = $this->lock instanceof \Symfony\Config\Framework\LockConfig ? $this->lock->toArray() : $this->lock;
