@@ -270,3 +270,9 @@ e101bf,127.0.0.1,GET,https://127.0.0.1:8000/api/ticket/1/comments,1746010103,,20
 ad9746,127.0.0.1,GET,https://127.0.0.1:8000/api/ticket/1/comments,1746010163,,200,request
 8da6a5,127.0.0.1,GET,https://127.0.0.1:8000/api/ticket/1/comments,1746010223,,200,request
 9eb2c1,127.0.0.1,GET,https://127.0.0.1:8000/api/ticket/1/comments,1746010283,,200,request
+3497b1,127.0.0.1,GET,https://127.0.0.1:8000/api/ticket/1/comments,1746010343,,200,request
+c919bd,127.0.0.1,GET,https://127.0.0.1:8000/api/ticket/1/comments,1746010403,,200,request
+084ad2,127.0.0.1,GET,https://127.0.0.1:8000/api/ticket/1/comments,1746010463,,200,request
+bd69b7,127.0.0.1,GET,https://127.0.0.1:8000/api/ticket/1/comments,1746010523,,200,request
+9ba586,127.0.0.1,GET,https://127.0.0.1:8000/api/ticket/1/comments,1746010583,,200,request
+f26bb3,127.0.0.1,GET,https://127.0.0.1:8000/api/ticket/1/comments,1746010643,,200,request
