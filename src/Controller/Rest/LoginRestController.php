@@ -19,4 +19,22 @@ class LoginRestController extends AbstractController
     {
         return new JsonResponse(['message' => 'Authentication successful'], 200);
     }
+
+    #[Route('/user', name: 'user', methods: ['GET'])]
+    public function user()
+    {
+        $user = $this->getUser();
+
+        if (!$user) {
+            throw $this->createNotFoundException();
+        }
+
+        $data = [
+            'id' => $user->getId(),
+            'email' => $user->getEmail(),
+            'roles' => $user->getRoles()
+        ];
+
+        return new JsonResponse($data, 200);
+    }
 }

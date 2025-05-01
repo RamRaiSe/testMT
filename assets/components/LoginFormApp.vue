@@ -33,6 +33,8 @@
 
 <script>
 import axios from 'axios';
+import {useUserStore} from "../stores/user";
+import {mapActions} from "pinia";
 
 export default {
   data() {
@@ -45,6 +47,9 @@ export default {
     };
   },
   methods: {
+    ...mapActions(useUserStore, {
+      fetchUser: 'fetchUser'
+    }),
     async submitForm() {
       this.errors = '';
 
@@ -59,12 +64,13 @@ export default {
         const response = await axios.post('/api/login', {email: this.email, password: this.password});
 
         if (response.data) {
+          await this.fetchUser();
           this.$router.push('/');
         }
       } catch (error) {
         this.errors = 'Invalid email or password. Please try again.';
       }
-    }
-  }
+    },
+  },
 }
 </script>

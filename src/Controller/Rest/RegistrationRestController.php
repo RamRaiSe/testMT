@@ -35,6 +35,10 @@ class RegistrationRestController extends AbstractController
             $user->setPassword($this->userPasswordHasher->hashPassword($user, $plainPassword));
             $user->addRole('ROLE_USER');
 
+            if (count($this->entityManager->getRepository(User::class)->findAll()) === 0) {
+                $user->addRole('ROLE_ADMIN');
+            }
+
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 

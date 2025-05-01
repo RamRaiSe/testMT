@@ -43,7 +43,14 @@ class TicketRestController extends AbstractController
     #[Route('/tickets', name: 'tickets', methods: ['GET'])]
     public function getTickets(Request $request): JsonResponse
     {
-        $tickets = $this->entityManager->getRepository(Ticket::class)->findBy(['creator' => $this->getUser()]);
+        $user = $this->getUser();
+
+        if ($user->hasRole('ROLE_ADMIN')) {
+            $tickets = $this->entityManager->getRepository(Ticket::class)->findAll();
+        } else {
+            $tickets = $this->entityManager->getRepository(Ticket::class)->findBy(['creator' => $this->getUser()]);
+        }
+
 
         $data = [];
 
@@ -68,6 +75,12 @@ class TicketRestController extends AbstractController
 
         if (!$ticket) {
             throw $this->createNotFoundException();
+        }
+
+        $user = $this->getUser();
+
+        if (!$user->hasRole('ROLE_ADMIN') && $user?->getId() !== $ticket->getCreator()?->getId()) {
+            throw $this->createAccessDeniedException();
         }
 
         $data = [
@@ -138,5 +151,54 @@ class TicketRestController extends AbstractController
         }
 
         return new JsonResponse($data);
+    }
+
+    #[Route('/ticket/{id}/close', name: 'post_close_ticket', methods: ['POST'])]
+    public function postCloseTicket(Request $request, int $id): JsonResponse
+    {
+        $ticket = $this->entityManager->getRepository(Ticket::class)->findOneBy(['id' => $id]);
+
+        if (!$ticket) {
+            throw $this->createNotFoundException();
+        }
+
+        $ticket->setStatus(Ticket::STATUS_CLOSED);
+
+        $this->entityManager->flush();
+
+        return new JsonResponse([]);
+    }
+
+    #[Route('/ticket/{id}/messages/{messageId}', name: 'post_close_ticket', methods: ['DELETE'])]
+    public function deleteMessage(Request $request, int $id, int $messageId): JsonResponse
+    {
+        $ticket = $this->entityManager->getRepository(Ticket::class)->findOneBy(['id' => $id]);
+
+        if (!$ticket) {
+            throw $this->createNotFoundException();
+        }
+
+        if ($this->getUser()?->getId() !== $ticket->getCreator()?->getId()) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $message = $this->entityManager->getRepository(Message::class)->findOneBy(['id' => $messageId]);
+
+        if (!$message) {
+            throw $this->createNotFoundException();
+        }
+
+        $this->entityManager->remove($message);
+
+        $this->entityManager->flush();
+
+        $update = new Update(
+            "ticket-$id",
+            json_encode(['messageId' => $messageId])
+        );
+
+        $this->hub->publish($update);
+
+        return new JsonResponse([]);
     }
 }

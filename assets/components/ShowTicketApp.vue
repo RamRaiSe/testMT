@@ -1,6 +1,7 @@
 <template>
   <div class="ticket-page">
     <div class="ticket-details">
+      <div v-if="ticket.status !== 1"><button class="btn btn-primary" @click="closeTicket">Close Ticket</button></div>
       <div class="meta">
         <span><strong>Created:</strong> {{ formatDate(ticket.createdAt) }}</span>
         <span><strong>Creator:</strong> {{ ticket.creator.email }}</span>
@@ -17,10 +18,11 @@
           <div class="author">{{ message.creator.email }}</div>
           <div class="text">{{ message.content }}</div>
           <div class="timestamp">{{ formatDate(message.createdAt) }}</div>
+          <div v-if="ticket.status !== 1" @click="deleteMessage(message.id)" style="text-decoration: underline; margin-top: 6px; cursor: pointer; color: darkred">delete</div>
         </div>
       </div>
 
-      <div class="new-message">
+      <div class="new-message" v-if="ticket.status !== 1">
         <textarea v-model="newMessage" placeholder="Write a message..."></textarea>
         <button @click="sendMessage" :disabled="!newMessage">Send</button>
       </div>
@@ -51,12 +53,12 @@ export default {
   },
   methods: {
     async fetchTicket() {
-      const res = await axios.get(`/api/ticket/${this.ticket.id}`);
-      this.ticket = res.data;
+      const response = await axios.get(`/api/ticket/${this.ticket.id}`);
+      this.ticket = response.data;
     },
     async fetchMessages() {
-      const res = await axios.get(`/api/ticket/${this.ticket.id}/messages`);
-      this.messages = res.data;
+      const response = await axios.get(`/api/ticket/${this.ticket.id}/messages`);
+      this.messages = response.data;
     },
     async sendMessage() {
       if (!this.newMessage.trim()) return;
@@ -85,18 +87,33 @@ export default {
 
       eventSource.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        console.log(data);
-        this.messages.push(data);
+
+        if (data.messageId) {
+          const index = this.messages.findIndex((message) => {
+            return message.id === data.messageId
+          });
+
+          this.messages.splice(index, 1);
+        } else {
+          this.messages.push(data);
+        }
       };
 
       eventSource.onerror = (error) => {
         console.error("Error with EventSource:", error);
       };
+    },
+    closeTicket() {
+      axios.post(`/api/ticket/${this.ticket.id}/close`);
+      this.$router.push('/ticket');
+    },
+    deleteMessage(messageId) {
+      axios.delete(`/api/ticket/${this.ticket.id}/messages/${messageId}`);
     }
   },
   mounted() {
-    this.fetchTicket()
-    this.fetchMessages()
+    this.fetchTicket().catch(()=> {this.$router.push('/ticket')});
+    this.fetchMessages();
     this.subscribe();
   },
 }
